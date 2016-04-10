@@ -2,12 +2,12 @@ var names = ["marshall", "ted", "barney", "robin", "lily", "stella", "victoria",
 var wins = 0;
 var losses = 0;
 var userGuess = "";
-var incorrectGuess = "";
+var incorrectGuess = [];
 var guessesRemaining = 9;
 var random = names[Math.floor(Math.random() * names.length)];
 
 
-console.log(random);
+console.log(random); // Checking if name printed matched random.
 var underScores = random.replace(/[a-z]/g, '_');
 $("#nameClear").append(underScores);
 var underSplit = underScores.split("");
@@ -30,12 +30,20 @@ function guessCount () {
 
 }
 
-function newGame () {
-    $("#letterClear").empty();
-    $("#nameClear").empty();
-    $("#nameClear").append(underScores);
+function newGame () { //function that restarts game
+    $("#letterClear").empty(); //clear letter incorrect letters 
+    $("#nameClear").empty(); //clear the name
+    $("#nameClear").append(underScores); //apend a new name
 }
 
+function multipleLetter () {
+	incorrectGuess.push(userGuess);
+	incorrectGuess = incorrectGuess.filter( function( item, index, inputArray ) {
+           return inputArray.indexOf(item) == index;
+    });
+    $("#letterClear").empty();
+    $("#letterClear").append(incorrectGuess);
+}
 
 //GAMEPLAY
 
@@ -44,12 +52,20 @@ document.onkeyup = function(event) {
     var userGuess = String.fromCharCode(event.keyCode).toLowerCase();
     if (event.keyCode >= 65 && event.keyCode <= 90) {
         guessCount();
-        for (var i = 0; i <= random.length; i++) {
+        for (var i = 0; i < random.length; i++) {
             if (userGuess == random[i] ) {
-                $("#nameClear").empty();
-                underSplit.splice(i, 1, userGuess);
-                $("#nameClear").append(underSplit);
+                $("#nameClear").empty(); //clears the name chosen
+                underSplit.splice(i, 1, userGuess); //replaces underscore with letter guessed
+                $("#nameClear").append(underSplit); //appends to nameClear
     
+            }
+            else {
+            	incorrectGuess.push(userGuess);
+				incorrectGuess = incorrectGuess.filter( function( item, index, inputArray ) {
+           		return inputArray.indexOf(item) == index;
+    		});
+    			$("#letterClear").empty();
+    			$("#letterClear").append(incorrectGuess);
             }
         }
 
