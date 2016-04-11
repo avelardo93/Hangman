@@ -36,13 +36,12 @@ function newGame () { //function that restarts game
     $("#nameClear").append(underScores); //apend a new name
 }
 
-function multipleLetter () {
-	incorrectGuess.push(userGuess);
-	incorrectGuess = incorrectGuess.filter( function( item, index, inputArray ) {
-           return inputArray.indexOf(item) == index;
-    });
-    $("#letterClear").empty();
-    $("#letterClear").append(incorrectGuess);
+function deleteRepeat () {
+	for (var i = 0; i <= incorrectGuess.length; i++) {
+		if (incorrectGuess[i] === random[i]) {
+			$(incorrectGuess[i]).remove();
+		}
+	}
 }
 
 //GAMEPLAY
@@ -60,7 +59,7 @@ document.onkeyup = function(event) {
     
             }
             else {
-            	incorrectGuess.push(userGuess);
+            	incorrectGuess.push(userGuess); //the following line clears multiple letters in the incorrect letter array
 				incorrectGuess = incorrectGuess.filter( function( item, index, inputArray ) {
            		return inputArray.indexOf(item) == index;
     		});
@@ -68,7 +67,7 @@ document.onkeyup = function(event) {
     			$("#letterClear").append(incorrectGuess);
             }
         }
-
+        
     }
     else {
         alert("Please choose a letter.");
