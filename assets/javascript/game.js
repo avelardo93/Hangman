@@ -58,7 +58,7 @@ document.onkeyup = function(event) {
                 $("#nameClear").append(underSplit); //appends to nameClear
     
             }
-            else {
+            else {                 //this userguess below is the issue
             	incorrectGuess.push(userGuess); //the following line clears multiple letters in the incorrect letter array
 				incorrectGuess = incorrectGuess.filter( function( item, index, inputArray ) {
            		return inputArray.indexOf(item) == index;
