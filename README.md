@@ -3,7 +3,7 @@
 
 How I Met Your Mother Themed Hangman
 
-* Technologies used:
+## Technologies used:
 * HTML
 * CSS
 * Bootstrap
