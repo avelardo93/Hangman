@@ -1,9 +1,11 @@
-#nameClear {
-	letter-spacing: 5px;
-	font-size: 20px;
+body {
+	background-image: url(../images/himym-how-i-met-your-mother-20633145-1600-1280.jpg);
 }
 
-#letterClear {
-	letter-spacing: 5px;
-	font-size: 20px;
+.jumbotron {
+	opacity: 0.8;
+}
+
+.panel {
+	opacity: 0.8;
 }
